@@ -3,7 +3,7 @@
 /**
  * bubble_sort - sorts an array of integers in assending order
  * @array: array to be sorted
- * @n: size of the array
+ * @size: size of the array
  * Return: sorted array
  */
 
