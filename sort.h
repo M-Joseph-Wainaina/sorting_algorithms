@@ -28,4 +28,7 @@ void insertion_sort_list(listint_t **list);
 
 /*print array*/
 void print_array(const int *array, size_t size);
+
+/*print list*/
+void print_list(const listint_t *list);
 #endif /*sort.h*/
