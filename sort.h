@@ -31,4 +31,7 @@ void print_array(const int *array, size_t size);
 
 /*print list*/
 void print_list(const listint_t *list);
+
+/*selection sort*/
+void selection_sort(int *array, size_t size);
 #endif /*sort.h*/
