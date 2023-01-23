@@ -31,7 +31,6 @@ void insertion_sort_list(listint_t **list)
 				start->prev = temp;
 				temp->prev = tmp;
 
-				printf("swapping middles\n");
 
 				print_list(*list);
 				start = temp->prev;
@@ -47,7 +46,6 @@ void insertion_sort_list(listint_t **list)
 				temp->next = start;
 				start->next = tmp;
 
-				printf("swapping first\n");
 
 				print_list(*list);
 				start = temp;
@@ -62,7 +60,6 @@ void insertion_sort_list(listint_t **list)
 				temp->prev = start->prev;
 				start->prev = temp;
 				tmp->next = temp;
-				printf("swapping lasties\n");
 
 
 				start = tmp;
