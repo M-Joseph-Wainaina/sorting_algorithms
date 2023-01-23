@@ -1,78 +1,53 @@
 #include "sort.h"
 
 /**
- * insertion_sort_list - sorts a list by insertion
- * @list: pointer pointer to the first list node
- *
- */
-
+  * insertion_sort_list - Sorts an doubly linked list
+  * of integers in ascending order using
+  * the Insertion sort algorithm.
+  * @list: The doubly linked list to sort
+  *
+  * Return: Nothing!
+  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *start;
-	listint_t *temp;
-	listint_t *tmp;
+	bool flag = false;
+	listint_t *tmp = NULL, *aux = NULL;
 
-	start = *list;
-	
-	do {
-		temp = start->next;
+	if (!list || !(*list) || !(*list)->next)
+		return;
 
-		if(temp->n < start->n)
+	tmp = *list;
+	while (tmp->next)
+	{
+		if (tmp->n > tmp->next->n)
 		{
-			/*swap middles*/
-			if (start->prev && temp->next)
-			{
-				temp->next->prev = start;
-				start->prev->next = temp;
-				tmp = temp->next;
-				temp->next = start;
-				start->next = tmp;
-				tmp = start->prev;
-				start->prev = temp;
-				temp->prev = tmp;
-
-
-				print_list(*list);
-				start = temp->prev;
-			}
-			/*swap first*/
-			else if(!start->prev && temp->next)
-			{
-				temp->next->prev = start;
-				*list = temp;
-				temp->prev = NULL;
-				start->prev = temp;
-				tmp = temp->next;
-				temp->next = start;
-				start->next = tmp;
-
-
-				print_list(*list);
-				start = temp;
-			}
-			/* swap lasties*/
-			else if(!temp->next && start->prev)
-			{
-				
-				temp->next = start;
-				start->next = NULL;
-				tmp = start->prev;
-				temp->prev = start->prev;
-				start->prev = temp;
-				tmp->next = temp;
-
-
-				start = tmp;
-				print_list(*list);
-			}
+			tmp->next->prev = tmp->prev;
+			if (tmp->next->prev)
+				tmp->prev->next = tmp->next;
 			else
+				*list = tmp->next;
+
+			tmp->prev = tmp->next;
+			tmp->next = tmp->next->next;
+			tmp->prev->next = tmp;
+			if (tmp->next)
+				tmp->next->prev = tmp;
+
+			tmp = tmp->prev;
+			print_list(*list);
+
+			if (tmp->prev && tmp->prev->n > tmp->n)
 			{
-				start = start->next;
+				if (!flag)
+					aux = tmp->next;
+				flag = true;
+				tmp = tmp->prev;
+				continue;
 			}
 		}
+		if (!flag)
+			tmp = tmp->next;
 		else
-		{
-			start = start->next;
-		}
-	} while(start->next);		
-}			
+			tmp = aux, flag = false;
+	}
+}
