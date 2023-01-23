@@ -1,10 +1,12 @@
-#ifndef _SORT_H_
-#define _SORT_H_
+#ifndef SORT_H
+#define SORT_H
 
-/*define of std header files*/
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+#define INCREMENT 1
+#define DECREMENT -1
 
 /**
  * struct listint_s - Doubly linked list node
@@ -20,18 +22,21 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
-/*0-bubble_sort.c*/
+void print_array(const int *, size_t);
+void print_list(const listint_t *);
 void bubble_sort(int *array, size_t size);
-
-/*1-insertion_sort_list.c*/
 void insertion_sort_list(listint_t **list);
-
-/*print array*/
-void print_array(const int *array, size_t size);
-
-/*print list*/
-void print_list(const listint_t *list);
-
-/*selection sort*/
 void selection_sort(int *array, size_t size);
-#endif /*sort.h*/
+void quick_sort(int *array, size_t size);
+void quick_sort_rec(int *array, int lower, int higher, size_t size);
+int lomuto_partition(int *array, int lower, int higher, size_t size);
+void shell_sort(int *array, size_t size);
+void counting_sort(int *array, size_t size);
+void radix_sort(int *array, size_t size);
+void bitonic_sort(int *array, size_t size);
+void cocktail_sort_list(listint_t **list);
+void swap_nodes(listint_t **list, listint_t *node);
+listint_t *get_dlistint_lelem(listint_t *h);
+int getCantRep(int num);
+
+#endif
